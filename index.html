@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journey Junkie</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <div class="d-flex align-items-center ms-auto"><button id="navLogoutBtn" class="btn btn-outline-light btn-sm" style="display:none">Logout</button><span id="userBadge" style="color:#fff;margin-left:8px;display:none"></span></div>
+      <a class="navbar-brand fw-bold margin-left" href="#">Journey Junkie</a>
+      <div>
+        <button class="btn btn-light me-2" data-bs-toggle="modal" data-bs-target="#signinModal">Sign In</button>
+        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Progress Section -->
+  <section class="container my-4">
+    <div class="card shadow-lg p-3">
+      <h4 class="fw-bold text-center">Travel Progress</h4>
+      <div class="row text-center mt-3">
+        <div class="col">Total Places: <span id="totalPlaces">0</span></div>
+        <div class="col">Visited: <span id="visitedPlaces">0</span></div>
+        <div class="col">Remaining: <span id="remainingPlaces">0</span></div>
+        <div class="col">Budget Spent: ₹ <span id="budgetSpent">0</span></div>
+        <div class="col">Completion: <span id="completionRate">0%</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toggle -->
+  <div class="container text-center mb-3">
+    <div class="btn-group" role="group">
+      <button class="btn btn-outline-primary active" id="allToggle">All Destinations</button>
+      <button class="btn btn-outline-success" id="wantToggle">Want to Visit</button>
+      <button class="btn btn-outline-info" id="visitedToggle">Visited</button>
+    </div>
+  </div>
+
+  <!-- Map -->
+  <div class="container mb-4">
+    <div id="map" class="map"></div>
+  </div>
+
+  <!-- Add Destination -->
+  <div class="container mb-4">
+    <div class="card p-3 shadow">
+      <h5 class="fw-bold">Add New Destination</h5>
+      <form id="destinationForm">
+        <div class="row mb-2">
+          <div class="col"><input type="text" id="city" class="form-control" placeholder="City" required></div>
+          <div class="col"><input type="text" id="country" class="form-control" placeholder="Country" required></div>
+        </div>
+        <div class="row mb-2">
+          <div class="col"><input type="number" id="budget" class="form-control" placeholder="Budget (₹)" required></div>
+          <div class="col">
+            <select id="priority" class="form-select" required>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+        </div>
+        <textarea id="notes" class="form-control mb-2" placeholder="Notes"></textarea>
+        <button class="btn btn-success w-100">Save Destination</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="container mb-3">
+    <input type="text" id="searchBar" class="form-control" placeholder="Search destinations...">
+  </div>
+
+  <!-- Wishlist -->
+  <div class="container">
+    <h4 class="fw-bold text-center mb-3">My Travel Wishlist</h4>
+    <!-- <div class="row" id="wishlist"></div> -->
+  </div>
+
+    <!-- <h4>My Destinations</h4> -->
+    <div class="row" id="destinations"></div>
+  </div>
+
+  <!-- Sign In Modal -->
+  <div class="modal fade" id="signinModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title">Sign In</h5></div>
+        <div class="modal-body">
+          <input id="signinEmail" type="email" class="form-control mb-2" placeholder="Email">
+          <input id="signinPassword" type="password" class="form-control mb-2" placeholder="Password">
+          <button id="signinBtn" class="btn btn-primary w-100">Sign In</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title">Sign Up</h5></div>
+        <div class="modal-body">
+          <input id="signupName" type="text" class="form-control mb-2" placeholder="Name">
+          <input id="signupEmail" type="email" class="form-control mb-2" placeholder="Email">
+          <input id="signupPassword" type="password" class="form-control mb-2" placeholder="Password">
+          <button id="signupBtn" class="btn btn-success w-100">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
